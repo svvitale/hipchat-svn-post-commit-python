@@ -1,0 +1,26 @@
+post-commit: Python hook used for SVN post commits
+
+This script is set to publish information after SVN commits to HipChat. 
+
+Required files/Application/services:
+    * Subversion: http://subversion.tigris.org/
+    * Working repository (you're on your own here)
+    * HipChat account and room setup: https://www.hipchat.com/
+    * HipChat token created: https://www.hipchat.com/groups/api
+
+The user MUST edit the script file to add in
+    * hipchat token
+    * hipcaht room name
+    * a user name for display in hipchat
+    * location of svnlook command.
+
+To test:
+    1) Edit script file
+    2) postToHipChat.py -s <svn repo> -r <rev #>
+    where <svn repo> is your full path to the repository and <rev #> is any number. 
+    3) Look at your log in HipChat and verify that information was posted.
+
+To install:
+    1) Add a call to the script as part of your post-commit hook.  On Windows, the call will look like this:
+        python.exe C:\<path_to_script>\postToHipChat.py -s "%REPOS%" -r %REV%
+
