@@ -1,6 +1,6 @@
 post-commit: Python hook used for SVN post commits
 
-This script is set to publish information after SVN commits to HipChat. 
+This script is set to publish information to HipChat when SVN commits occur. 
 
 Required files/Application/services:
     * Subversion: http://subversion.tigris.org/
