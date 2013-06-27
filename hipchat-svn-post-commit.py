@@ -28,7 +28,7 @@ ROOM="<room name>"
 NAME="Subversion"
 
 # svnlook location
-LOOK="svnlook"
+LOOK="/usr/bin/svnlook"
 
 ##############################################################
 ##############################################################
@@ -55,9 +55,11 @@ def sendToHipChat( msg, token, room, name ):
 	# urlencode and post
 	urllib2.urlopen( "https://api.hipchat.com/v1/rooms/message", urllib.urlencode( request ) )
   
-def runLook( subcmd, *args ):
-	p = subprocess.Popen([LOOK, subcmd] + list(args), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	return p.communicate()[0].strip()
+def runLook( subcmd, arg1, arg2, arg3 ):
+	# check_output will except if it fails so we don't spam the room with 'run svnlook help for help' messages
+	return subprocess.check_output(LOOK + ' ' + subcmd + ' ' + arg1 + ' ' + arg2 + ' ' + arg3, shell=True, stderr=subprocess.STDOUT)
+	#This is from the old subprocess.Popen method
+	#return p.communicate()[0].strip()
 
 def getCommitInfo( repo, revision ):
 	comment = runLook("log", repo, "-r", revision)
