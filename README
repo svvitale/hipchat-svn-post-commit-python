@@ -10,7 +10,7 @@ Required files/Application/services:
 
 The user MUST edit the script file to add in
     * hipchat token
-    * hipcaht room name
+    * hipchat room name
     * a user name for display in hipchat
     * location of svnlook command.
 
